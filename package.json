@@ -1,6 +1,6 @@
 {
   "name": "fahhh-on-error",
-  "displayName": "Error Sound Alert",
+  "displayName": "Faaah terminal sound on error",
   "description": "Plays a customizable sound whenever your code errors — on save, on run, or anytime a running process (like uvicorn) prints an error.",
   "version": "0.1.0",
   "publisher": "AakarshPattanaik",
