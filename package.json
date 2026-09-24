@@ -1,5 +1,5 @@
 {
-  "name": "faaah-error",
+  "name": "fahhh-on-error",
   "displayName": "Error Sound Alert",
   "description": "Plays a customizable sound whenever your code errors — on save, on run, or anytime a running process (like uvicorn) prints an error.",
   "version": "0.1.0",
@@ -118,8 +118,8 @@
     "vscode:prepublish": "npm run compile"
   },
   "devDependencies": {
-    "@types/vscode": "^1.93.0",
     "@types/node": "^20.0.0",
+    "@types/vscode": "^1.93.0",
     "typescript": "^5.4.0"
   },
   "author": "",
@@ -127,5 +127,8 @@
   "bugs": {
     "url": "https://github.com/quos21/faaah_error/issues"
   },
-  "homepage": "https://github.com/quos21/faaah_error#readme"
+  "homepage": "https://github.com/quos21/faaah_error#readme",
+  "dependencies": {
+    "@vscode/vsce": "^4.0.0"
+  }
 }
