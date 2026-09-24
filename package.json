@@ -1,0 +1,131 @@
+{
+  "name": "faaah-error",
+  "displayName": "Error Sound Alert",
+  "description": "Plays a customizable sound whenever your code errors — on save, on run, or anytime a running process (like uvicorn) prints an error.",
+  "version": "0.1.0",
+  "publisher": "AakarshPattanaik",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quos21/faaah_error.git"
+  },
+  "license": "MIT",
+  "icon": "media/icon.png",
+  "keywords": [
+    "error",
+    "sound",
+    "audio",
+    "alert",
+    "python",
+    "uvicorn",
+    "productivity",
+    "accessibility"
+  ],
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "errorSound.testSound",
+        "title": "Error Sound: Play Test Sound"
+      },
+      {
+        "command": "errorSound.pickSound",
+        "title": "Error Sound: Choose Sound"
+      },
+      {
+        "command": "errorSound.toggleEnabled",
+        "title": "Error Sound: Toggle Enabled"
+      }
+    ],
+    "configuration": {
+      "title": "Error Sound Alert",
+      "properties": {
+        "errorSound.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Master switch for the extension."
+        },
+        "errorSound.sound": {
+          "type": "string",
+          "enum": [
+            "classic-beep",
+            "descending-error",
+            "buzzer",
+            "alarm",
+            "faaah",
+            "custom"
+          ],
+          "enumDescriptions": [
+            "Short double beep",
+            "Sad, descending 'wah wah wah' tone",
+            "Harsh buzzer",
+            "Alternating two-tone alarm",
+            "Sliding pitch-bend groan (the FAAAAH sound)",
+            "Use your own audio file (set errorSound.customSoundPath)"
+          ],
+          "default": "faaah",
+          "description": "Which bundled sound to play on error."
+        },
+        "errorSound.customSoundPath": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to a custom audio file, used when errorSound.sound is 'custom'."
+        },
+        "errorSound.onSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Play sound when you save a file that has an Error-severity diagnostic."
+        },
+        "errorSound.onTerminalOutput": {
+          "type": "boolean",
+          "default": true,
+          "description": "Watch terminal output (running a file, uvicorn, any command) and play sound when an error pattern appears — even in long-running processes."
+        },
+        "errorSound.errorPatterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "Traceback \\(most recent call last\\)",
+            "^\\s*\\w*Error:",
+            "^\\s*\\w*Exception:",
+            "\\bERROR\\b",
+            "\\bCRITICAL\\b",
+            "Internal Server Error"
+          ],
+          "description": "Regex patterns (checked per line, case-sensitive by default) that count as an error in terminal output."
+        },
+        "errorSound.cooldownMs": {
+          "type": "number",
+          "default": 3000,
+          "description": "Minimum milliseconds between two sound plays, so rapid/repeated errors don't spam sound."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -w -p ./",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.93.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0"
+  },
+  "author": "",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/quos21/faaah_error/issues"
+  },
+  "homepage": "https://github.com/quos21/faaah_error#readme"
+}
